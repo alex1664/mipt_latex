@@ -1,0 +1,87 @@
+% !TeX root = main.tex
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\geometry{margin=15mm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[unicode,hidelinks]{hyperref}
+
+% Красная строка теоремы равна отступу обычного абзаца.
+\newtheoremstyle{indentedtheorem}
+  {\topsep}{0pt}
+  {\itshape}{\parindent}
+  {\bfseries}{.}
+  {5pt plus 1pt minus 1pt}{}
+\theoremstyle{indentedtheorem}
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{lemma}{Лемма}
+% Точка уже входит в сокращение «Утв.».
+\newtheoremstyle{indentedstatement}
+  {\topsep}{0pt}
+  {\itshape}{\parindent}
+  {\bfseries}{}
+  {5pt plus 1pt minus 1pt}{\thmname{#1}\thmnote{ (#3).}}
+\theoremstyle{indentedstatement}
+\newtheorem*{proposition}{Утв.}
+\theoremstyle{plain}
+\newtheorem{definition}{Определение}
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\R}{\mathbb{R}}
+
+% Короткое определение: жирная метка и обычный текст.
+\newcommand{\Def}[1]{\textbf{Опр.}~#1}
+
+
+% Доказательство: без дополнительного промежутка сверху, с красной строкой.
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{%
+  \par\pushQED{\qed}%
+  \edef\proofparagraphindent{\the\parindent}%
+  \normalfont\topsep=0pt\partopsep=0pt
+  \trivlist
+  \item\relax
+  \setlength{\parindent}{\proofparagraphindent}%
+  \hspace*{\parindent}{\itshape #1\@addpunct{.}}\space\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+% Теорема: название, формулировка, доказательство (можно оставить пустым).
+\NewDocumentCommand{\thm}{m +m +m}{%
+  \begin{theorem}[#1]
+    #2
+  \end{theorem}%
+  \IfBlankF{#3}{%
+    \begin{proof}
+      #3
+    \end{proof}%
+  }%
+}
+
+\NewDocumentCommand{\lem}{m +m +m}{%
+  \begin{lemma}[#1]
+    #2
+  \end{lemma}%
+  \IfBlankF{#3}{%
+    \begin{proof}
+      #3
+    \end{proof}%
+  }%
+}
+
+\NewDocumentCommand{\utv}{m +m +m}{%
+  \begin{proposition}[#1]
+    #2
+  \end{proposition}%
+  \IfBlankF{#3}{%
+    \begin{proof}
+      #3
+    \end{proof}%
+  }%
+}
