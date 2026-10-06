@@ -2,7 +2,7 @@
 
 ## Создать проект
 
-В терминале VS Code из папки `/latex`:
+В терминале VS Code из корня локального репозитория:
 
 ```sh
 python3 new-project.py projects/newProject
