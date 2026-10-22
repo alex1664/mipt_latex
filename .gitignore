@@ -1,2 +1,7 @@
 build/
 *.synctex.gz
+
+# Private materials
+/projects/cpp_shit/
+/progects/cpp_shit/
+/пруфы/

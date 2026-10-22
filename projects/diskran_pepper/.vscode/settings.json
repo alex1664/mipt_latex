@@ -1,0 +1,56 @@
+{
+  "latex-workshop.latex.recipe.default": "latexmk (xelatex) + main.pdf",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "[latex]": {
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+  },
+  "cSpell.language": "en,ru",
+  "latex-workshop.latex.search.rootFiles.include": [
+    "**/main.tex"
+  ],
+  "latex-workshop.latex.search.rootFiles.exclude": [
+    "**/build/**",
+    "**/.templates/**"
+  ],
+  "latex-workshop.latex.rootFile.useSubFile": false,
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
+  "latex-workshop.latex.build.enableMagicComments": false,
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (xelatex) + main.pdf",
+      "tools": [
+        "xelatex-build",
+        "publish-pdf"
+      ]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex-build",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-outdir=%DIR%/build",
+        "-auxdir=%DIR%/build",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "publish-pdf",
+      "command": "cp",
+      "args": [
+        "%DIR%/build/%DOCFILE%.pdf",
+        "%DIR%/%DOCFILE%.pdf"
+      ]
+    }
+  ]
+}
